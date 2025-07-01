@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Afrozouk Hit",
+    "category": "Afrozouk",
+    "price": 12,
+    "file": "afrozouk1.mp3"
+  },
+  {
+    "name": "Afropop Wave",
+    "category": "Afropop",
+    "price": 12,
+    "file": "afropop1.mp3"
+  },
+  {
+    "name": "Drill Madness",
+    "category": "Drill",
+    "price": 12,
+    "file": "drill1.mp3"
+  }
+]
