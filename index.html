@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Nirin's Beatz Store</title>
+  <style>
+    body { font-family: sans-serif; background: #f9f9f9; padding: 20px; }
+    h1 { color: #333; }
+    .category { margin-top: 30px; font-size: 22px; color: #444; }
+    .beat { margin: 15px 0; padding: 10px; background: #fff; border-radius: 10px; box-shadow: 0 0 5px #ccc; }
+    .beat h3 { margin: 0; font-size: 18px; }
+    .contact { margin-top: 40px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>🎧 Nirin's Beatz</h1>
+  <div id="content"></div>
+
+  <div class="contact">
+    <p>📞 WhatsApp: <a href="https://wa.me/261334753098" target="_blank">+261334753098</a></p>
+    <p>✉️ Email: <a href="mailto:nirinsbeatz@gmail.com">nirinsbeatz@gmail.com</a></p>
+  </div>
+
+<script>
+fetch("beats/data.json")
+  .then(res => res.json())
+  .then(beats => {
+    const content = document.getElementById("content");
+    const grouped = {};
+
+    beats.forEach(beat => {
+      if (!grouped[beat.category]) grouped[beat.category] = [];
+      grouped[beat.category].push(beat);
+    });
+
+    for (const category in grouped) {
+      const section = document.createElement("div");
+      section.innerHTML = `<div class='category'>★ ${category}</div>`;
+      grouped[category].forEach(beat => {
+        section.innerHTML += `
+          <div class='beat'>
+            <h3>🎵 ${beat.name} - $${beat.price}</h3>
+            <audio controls src="beats/${beat.file}"></audio>
+          </div>`;
+      });
+      content.appendChild(section);
+    }
+  });
+</script>
+</body>
+</html>
